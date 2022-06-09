@@ -1,3 +1,7 @@
+// const { fetchProducts } = require("./helpers/fetchProducts");
+
+const sectionItems = document.querySelector('.items');
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -12,7 +16,7 @@ const createCustomElement = (element, className, innerText) => {
   return e;
 };
 
-const createProductItemElement = ({ sku, name, image }) => {
+const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) => {
   const section = document.createElement('section');
   section.className = 'item';
 
@@ -24,6 +28,13 @@ const createProductItemElement = ({ sku, name, image }) => {
   return section;
 };
 
+function percorrendo() {
+  return fetchProducts('computador')
+  .then((index) => index.results
+  .forEach((i) => sectionItems
+  .appendChild(createProductItemElement(i))));
+}
+percorrendo();
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
@@ -38,4 +49,4 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-window.onload = () => { };
+window.onload = () => {};
