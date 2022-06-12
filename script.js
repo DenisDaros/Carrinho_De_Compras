@@ -1,4 +1,5 @@
 // const { fetchProducts } = require("./helpers/fetchProducts");
+const lista = document.querySelectorAll('.cart__item');
 const ol = document.querySelector('.cart__items');
 const sectionItems = document.querySelector('.items');
 
@@ -52,11 +53,16 @@ const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
   return fetchItem(parametro).then((item) => ol.appendChild(createCartItemElement(item)));
  }
 document.addEventListener('click', (event) => {
-  // const ident = document.querySelector('.item__sku');
+ npm
 if (event.target.classList.contains('item__add')) {
 const id = event.target.parentNode.firstChild.innerText;
 addPdt(id);
 }
+});
+document.addEventListener('click', (event) => {
+  if (event.target.classList.contains('empty-cart')) {
+    ol.innerText = '';
+  }
 });
 
 window.onload = () => {};
