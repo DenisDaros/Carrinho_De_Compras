@@ -34,7 +34,7 @@ function percorrendo() {
   .forEach((i) => sectionItems
   .appendChild(createProductItemElement(i))));
 }
-percorrendo();
+
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
@@ -64,4 +64,14 @@ document.addEventListener('click', (event) => {
   }
 });
 
+async function textoDeEspera() {
+  const section = document.querySelector('.items');
+  const div = document.createElement('div');
+  div.className = 'loading';
+  div.innerText = 'carregando...';
+  section.appendChild(div);
+ await percorrendo();
+ div.remove();
+}
+textoDeEspera();
 window.onload = () => {};
